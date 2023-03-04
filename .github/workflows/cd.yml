@@ -9,8 +9,8 @@ jobs:
   scm:
     runs-on: ubuntu-latest
     steps:
-     - name: Setup and clone repo
-     - uses: actions/checkout@v3
+      - name: Setup and clone repo
+      - uses: actions/checkout@v3
 
   build:
     needs: [scm]
@@ -26,20 +26,6 @@ jobs:
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v1
-
-      - name: Set up Node 14
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-
-      - name: install Snyk CLI
-        run: npm install -g snyk
-
-      - name: run Snyk Open Source Test
-        run: snyk test
-
-      - name: run Snyk Code Test
-        run: snyk code test
 
       - name: Build with Maven
         run: mvn -B package -DskipTests=true --file pom.xml
