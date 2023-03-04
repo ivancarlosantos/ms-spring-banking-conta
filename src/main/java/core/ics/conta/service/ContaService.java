@@ -3,14 +3,12 @@ package core.ics.conta.service;
 import core.ics.conta.exception.RegraDeNegocioException;
 import core.ics.conta.model.Conta;
 import core.ics.conta.repository.ContaRepository;
+import core.ics.conta.utils.ValidateParameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @Service
 public class ContaService {
@@ -39,21 +37,20 @@ public class ContaService {
         return contaRepository.save(conta);
     }
 
-    public Conta findContaByID(Long id){
+    public Conta findContaByID(String value){
+        Long id = ValidateParameter.validate(value);
         return contaRepository
                 .findById(id).orElseThrow(() -> new RegraDeNegocioException("Conta "+ HttpStatus.NOT_FOUND));
     }
 
+
     public List<Conta> list(){
-        return contaRepository
-                .findAll()
-                .stream()
-                .collect(Collectors.toList());
+        return new ArrayList<>(contaRepository.findAll());
     }
 
-    public String delete(Long id){
+    public String delete(String value){
+        Long id = ValidateParameter.validate(value);
         contaRepository.deleteById(id);
         return "Conta DELETADA";
     }
-
 }

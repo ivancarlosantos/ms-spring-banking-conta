@@ -27,12 +27,12 @@ public class ContaController {
     }
 
     @GetMapping(path = "/conta/{id}")
-    public ResponseEntity<Conta> findConta(@PathVariable("id") Long id){
+    public ResponseEntity<Conta> findConta(@PathVariable("id") String id){
         return ResponseEntity.status(HttpStatus.OK).body(contaService.findContaByID(id));
     }
 
     @DeleteMapping(path = "/conta/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id){
+    public ResponseEntity<String> delete(@PathVariable("id") String id){
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(contaService.delete(id));
     }
 }
