@@ -1,8 +1,8 @@
 name: CD
 
 on:
- push:
-  branches: [ develop ]
+  push:
+    branches: [ develop ]
   
 jobs:
   scm:
