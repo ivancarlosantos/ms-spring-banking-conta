@@ -9,7 +9,6 @@ jobs:
   scm:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup and clone repo
       - uses: actions/checkout@v3
 
   build:
