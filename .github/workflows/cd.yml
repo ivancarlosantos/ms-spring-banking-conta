@@ -25,7 +25,7 @@ jobs:
           cache: maven
 
       - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2.4.1
 
       - name: Build with Maven
         run: mvn -B package -DskipTests=true --file pom.xml
